@@ -280,19 +280,213 @@ IP - 13.232.254.173
 User Name - centos (become a root) 
 Password - centos123
 
+========================================================================
+RULE OF PID1
+========================================================================
+PHYSCIAL			VIRTUAL SERVER				CONTAINER
+---------------------------------------------------------------------------------------
+UR PS is RUNNING		VM is running				Container is running
+as long as PID1 is running	as long as PID1 is running		as long as PID1 is running
+
+
+PID 1 = SYSTEMD			PID 1 = SYSTEMD				PID 1 = ANYTHING
+									/bin/bash
+									ls
+									java
+									python
 
 
 
 
+How to use container?
+================================
+How to do inside a container?
+		using SHELL
+
+exec 
+	exec would execute an executable inside a container
+	you can execute /bin/bash and -it - you can go inside
+
+  109  docker ps
+  110  docker ps -a
+  111  clear
+  112  docker exec raj ls
+  113  docker exec raj df
+  114  docker exec raj java
+  115  clear
+  116  ls
+  117  docker ps
+  118  docker exec -it raj2 /bin/bash
 
 
 
+attach
+	you can attached to PID 1 of the container
+
+  146  ps -eaf
+  147  clear
+  148  docker ps
+  149  docker ps -a
+  150  clear
+  151  docker ps
+  152  docker attach 269e7ffabefc
+  153  docker ps
+  154  docker run -itd ubuntu
+  155  docker ps
+  156  docker attach ecbe8e512b0a
+  157  clear
+  158  docker ps -a
+  159  clear
+  160  docker ps
+  161  docker inspect 44ab8cc075a8
+  162  clear
+  163  curl http://172.17.0.6
+  164  nohup curl http://172.17.0.6 &
+  165  docker ps
+  166  docker attach 44ab8cc075a8
+  167  clear
+  168  bg
+  169  docker ps
+  170  ls
+  171  docker inspect eff7efb9c4c3
+  172  clear
+  173  docker ps
+  174  docker attach eff7efb9c4c3
+
+How to access a contrainer from outside?
+		using network
+
+docker run -d -p 80:80 httpd
+
+80:80
+81:80
+
+HOST PORT:CONTAINER PORT
 
 
 
+RUN
+--------------------------------
+pull + create + start + attached
+
+RUN -d 
+--------------------------------
+pull + create + start + not attached
+
+================================================================
+https://devopsschool.com/tutorial/docker/commands/
+
+  183  docker ps
+  184  docker cp devopsschool.txt 3effb466b7b5:/tmp
+  185  docker exec 3effb466b7b5 ls /tmp
+  186  clear
+  187  ls
+  188  rm -rf devopsschool.txt
+  189  docker cp 3effb466b7b5:/tmp/devopsschool.txt .
+
+
+diff
+	SINCE Container is created
+	- ADDED
+	- CHANGED
+	- DELETED
+
+  198  docker exec -it 3effb466b7b5 /bin/bash
+  199  clear
+  200  docker ps
+  201  docker diff eff7efb9c4c3
+  202  docker diff 3effb466b7b5
+
+
+  206  docker ps
+  207  docker inspect 3effb466b7b5
+  208  docker images
+  209  docker inspect httpd
+  210  history
+
+
+ 214  docker run httpd
+  215  docker run -d httpd
+  216  docker run -d httpd
+  217  docker run -d httpd
+  218  docker run -d httpd
+  219  docker run -d httpd
+  220  docker run -d httpd
+  221  clear
+  222  docker ps
+  223  clear
+  224  docker stop $(docker ps -a -q)
+  225  docker rm $(docker ps -a -q)
+  226  clear
+  227  docker ps
+  228  docker run -d httpd
+  229  docker ps
+  230  docker inspect afcd806a11ab
+  231  ping 172.17.0.2
+  232  clear
+  233  docker run -d -p 80:80 httpd
+  234  docker ps
+  235  docker run -d -p 82:80 httpd
+  236  docker ps
+  237  docker ps
+  238  docker stop 68b88cec7ace 7b2899c4a84c
+  239  clear
+  240  docker port
+  241  docker ps
+  242  docker start 68b88cec7ace 7b2899c4a84c
+  243  clear
+  244  docker ps
+  245  docker port 68b88cec7ace
+  246  docker port 484cf0e44ddd
+  247  clear
+  248  docker ps
+  249  docker rename 484cf0e44ddd ramukaka
+  250  docker ps
 
 
 
+Assignment
+===================================
+update	Update configuration of one or more containers
+wait	Block until one or more containers stop, then print their exit codes
+
+  254  docker ps
+  255  docker logs 484cf0e44ddd
+  256  docker logs 68b88cec7ace
+  257  clear
+  258  docker ps
+  259  docker logs 68b88cec7ace
+  260  docker logs 68b88cec7ace
+  261  docker logs 68b88cec7ace
+
+
+ 250  docker ps
+  251  clear
+  252  history
+  253  clear
+  254  docker ps
+  255  docker logs 484cf0e44ddd
+  256  docker logs 68b88cec7ace
+  257  clear
+  258  docker ps
+  259  docker logs 68b88cec7ace
+  260  docker logs 68b88cec7ace
+  261  docker logs 68b88cec7ace
+  262  history
+  263  clear
+  264  docker stats
+  265  docker stats 68b88cec7ace
+  266  docker stats
+  267  docker ps
+  268  ps -eaf | grep httpd-foreground
+  269  ps -eaf | grep httpd
+  270  which httpd
+  271  which httpd
+  272  ps -eaf | grep httpd
+  273  docker ps
+  274  docker top 68b88cec7ace
+  275  clear
+  276  docker events
 
 
 
