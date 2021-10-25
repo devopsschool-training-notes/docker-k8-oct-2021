@@ -1,0 +1,302 @@
+Rajesh Kumar
+------------------
+Docker & Kube
+---------------------
+9:00 - 5:00 PM IST
+-----------------------
+
+Lunch - 1-2 PM IST
+--------------------
+BREAK - 15 mins
+	--------
+	11: AM
+	3:30 PM
+-----------------------
+Demo + Lab = AWS
+--------------------------
+===========================================
+What is Docker?
+-----------------------------------
+Container mgmt tool/platform
+Release
+	Community 
+	Enterprise
+20.X
+Written in Golang
+Soloman hykes
+
+	Tool
+	- Cost benefits?
+	----------------  1 APP (X CPU + X RAM) --> 1 APP (X-5 CPU + X-5 RAM) 
+	- Time benefits?
+	----------------  1 APP ( 5mins) --> 1/100 APP - 1 SEC
+	- Eff* and Quality of work?
+	----------------  
+
+	mgmt?
+
+	Container
+	Container is a init of kernal ns, cgroups and capa*.
+	1 Container
+			1 USER	FROM USR NS
+			1 NET	FROM NET NS
+			1 PID TREE FROM PID NS
+			1 MNT	FROM MNT NS
+		from a request from docker to Kernal.
+
+	is APP runtime env which is independent and isolated has all resources required in it.
+			
+	---------------------------------
+	RUN YOUR APP
+
+	What are the resources in OS(kernal) we NEED to RUN A APP?
+		     ---------------
+	-----------------------------------------------
+Hardware
+	OS
+	  KERNAL
+		Namespace
+						 	CAN 	ALLOWDbyOS	NEED				
+		     	USR INIT-1 1 USER		UN	UN		1
+			PID INIT-1 1 PID TREE		UN	1		1
+			MNT INIT-1 1 FILESYSTEM*	UN	1		1
+			NET INIT-1 1 NETWORK		UN	1		1
+		CGROUP
+			Allocate a CPU and RAM to PID
+
+		CAPABILITIES 
+			set user root or non-root
+
+		USER
+		PID
+		MNT	
+		NET
+
+		CPU
+		RAM
+	
+		Permission
+	
+
+		----------------
+The kernel is a computer program at the core of a computer's operating system and has complete control over everything in the system.
+
+
+MNT AKA MOUNT AKA FileSystemS
+----------------------------
+Collection of files/dirs for SPECIFIC PURPOSE
+
+BOOT FileSystem	aka kernal program
+ROOT FileSystem
+USER FileSystem
+APP FileSystemS
+
+
+MNT == ROOT FileSystem + USER FileSystem + APP FileSystem
+	centos + centos + ls
+	ubuntu + ub + apache + tomcat + jdk + app
+
+==============================================================================
+How to run APP?
+==================================================================================
+PHYSICAL SERVER		===>	VMS   ==> 
+
+
+=====================================================================================
+Docker Architecture
+==================================
+
+
+Human --> Docker Client --> Docker Server --> ContainerD --> Kernal
+         =======================================
+		Docker engine
+
+
+Docker Components
+=========================================
+Docker Engine
+
+Docker Image
+--------------------
+	Collection of file system
+	Contains version of file system
+ROOT FileSystem + USER FileSystem + APP FileSystem
+centos
+ubuntu
+fedora
+centos + userx + ls
+centos + userx + java + tomcat + app
+
+	1 COPY OF Image get MONTED in EACH CONTAINER
+	FROM 1 Image - you can create as many container.
+	
+Vm Image 
+-------------------
+BOOT FileSystem + ROOT FileSystem + USER FileSystem + APP FileSystem
+
+
+
+Registry
+	PUBLIC
+		hub.docker.com
+		google registry
+	PVT
+		artifactory
+		nexus
+
+Container
+Human --> client -> server
+			CHECK - if image present in Server
+			containerD -> Kernal 
+						1 MNT from IMAGE
+						1 NET
+						1 PID TREE
+						1 USER
+						& ATTACHED MNT NET PID TREE TO USER
+						=============
+						Container
+
+How to install docker?
+================================
+https://devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+   7  docker -v
+    8  sudo systemctl enable docker
+    9  docker info
+   10  sudo systemctl start docker
+   11  docker info
+   12  clear
+   13  clear
+   14  which docker
+   15  which dockerd
+   16  which containerd
+   17  ps -eaf | grep docker
+   18  ps -eaf | grep containerd
+   19  docker version
+   20  docker version
+   21  docker -v
+   22  docker info
+
+Container Lifecycle
+-----------------------------
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill - remove
+
+Vm lifecycle
+-----------------
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill - remove
+
+ 25  docker images
+   26  docker pull httpd
+   27  docker images
+   28  docker ps
+   29  docker ps -a
+   30  clear
+   31  docker create httpd
+   32  docker ps
+   33  docker ps -a
+   34  docker create -name raj httpd
+   35  docker create --name raj httpd
+   36  docker ps
+   37  clear
+   38  docker pa -a
+   39  clear
+   40  docker ps -a
+   41  docker create --name raj2 httpd
+   42  docker ps -a
+   43  docker start 013cafdc736e
+   44  docker ps -a
+   45  docker start raj
+   46  docker ps -a
+   47  docker stop raj
+   48  docker ps -a
+   49  docker start raj
+   50  docker ps -a
+   51  docker restart 013cafdc736e
+   52  docker ps -a
+   53  docker pause 013cafdc736e
+   54  docker ps -a
+   55  docker unpause 013cafdc736e
+   56  docker ps -a
+   57  docker kill 013cafdc736e
+   58  docker ps -a
+   59  docker rm 013cafdc736e
+   60  docker ps -a
+   61  docker rm raj
+   62  docker rm -h
+   63  clear
+   64  docker ps -a
+
+
+===================================
+PROOF
+ 65  clear
+   66  docker ps -a
+   67  docker exec raj df -kh
+   68  df -kh
+   69  docker exec raj2 df -kh
+   70  docker start raj2
+   71  docker exec raj2 df -kh
+   72  docker exec raj df -kh
+   73  df -kh
+   74  ps -eaf
+   75  clear
+   76  docker exec raj ps -eaf
+   77  docker pull jenkins/jenkins
+   78  clear
+   79  docker images
+   80  docker create jenkins/jenkins
+   81  docker create jenkins/jenkins
+   82  docker ps
+   83  docker ps -1
+   84  docker ps -a
+   85  docker start 23e7fd1ddbf4
+   86  docker ps
+   87  docker exec 23e7fd1ddbf4 ps -eaf
+   88  docker run -itd ubuntu
+   89  docker ps
+   90  docker exec b9f107a7ec55 ps -eaf
+   91  docker exec b9f107a7ec55 ifconfig
+   92  docker exec 23e7fd1ddbf4 ifconfig
+   93  docker exec 23e7fd1ddbf4 ip
+   94  docker ps
+   95  docker exec 3087d9bafeef ip
+   96  docker exec 3087d9bafeef ipconfig
+   97  clear
+   98  docker ps
+   99  docker inspect f5a42900ddc4
+  100  clear
+  101  docker ps
+  102  docker exec b9f107a7ec55 ps -eaf
+
+Lab and Assignment For 25 Oct 2021 - Docker Session
+==================================================================
+Lab - All Above Commands you need run and experience.
+==================================================================
+Assignment# 1 - What is Docker and Container? Define in 15 points with example image
+Assignment# 2 - What is the differnece between docker pause and unpuase?
+Assignment# 3 - What is the differnece between docker stop and kill?
+
+IP - 13.232.254.173
+User Name - centos (become a root) 
+Password - centos123
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
