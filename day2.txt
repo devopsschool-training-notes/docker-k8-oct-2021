@@ -181,12 +181,51 @@ RUN touch /opt/rajesh3.txt
   429  docker build -f dockerfile2 -t rajesh2 .
   430  history
 
+===================================================
+How to share an docker Image?
+-----------------------------------------
+useradd rajesh
+su rajesh
+cd
+sudo usermod -aG docker rajesh
+
+Method 1 - using tar ball
+ 17  pwd
+   18  docker images
+   19  clear
+   20  docker save -o rajesh2.tar rajesh2
+   21  ls
+   22  docker rmi rajesh2
+   23  clear
+   24  docker images
+   25  clear
+   26  ls
+   27  docker load -i rajesh2.tar
+   28  docker images
+   29  history
 
 
+Method 2 - using hub.docker.com
 
+Step 1 - Register & Validate at hub.docker.com
+Step 2 - Login at hub.docker.com
+Step 3 - Create a repo
+Step 4 - MAKE SURE YOUR IMAGE NAME iN local MUST match with a Image name of hub.docker.com
 
+$ docker tag rajesh2 devopsschools/oct-2021-rajesh2
 
+Step 5 - docker login
+Step 6 - 
+docker push devopsschools/oct-2021-rajesh2
 
+ 31  docker images
+   32  clear
+   33  docker tag rajesh2 devopsschools/oct-2021-rajesh2
+   34  docker images
+   35  history
+   36  clear
+   37  docker login
+   38  docker push devopsschools/oct-2021-rajesh2
 
 
 
