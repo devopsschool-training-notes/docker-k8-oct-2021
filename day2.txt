@@ -352,8 +352,77 @@ tempfs		memory
  1072  docker volume ls
  1073  history
 
+=====================================================
+
+Docker Support Multiple types of Networking driver
+---------------------------
+Bridge [Default]
+Host
+None
 
 
+ 1075  docker network ls
+ 1076  docker inspect 1f63dce479e4
+ 1077  clear
+ 1078  docker inspect 1f63dce479e4
+ 1079  docker ps
+ 1080  docker inspect f19ebc466912
+ 1081  clear
+ 1082  ls
+ 1083  docker network ls
+ 1084  docker network
+ 1085  docker network create dev
+ 1086  clear
+ 1087  docker network ls
+ 1088  docker network qa
+ 1089  docker network create qa
+ 1090  clear
+ 1091  docker network ls
+ 1092  docker stop $(docker ps -a -q)
+ 1093  docker rm $(docker ps -a -q)
+ 1094  clear
+ 1095  ls
+ 1096  docker network ls
+ 1097  docker run -itd ubuntu
+ 1098  docker ps
+ 1099  docker inspect 995738e7868f
+ 1100  clear
+ 1101  docker network ls
+ 1102  docker run -itd --net=qa ubuntu
+ 1103  docker ps
+ 1104  docker inspect 2468d5b4a8d6
+ 1105  docker inspect qa
+ 1106  clear
+ 1107  docker network ls
+ 1108  docker network
+ 1109  docker ps
+ 1110  docker network connect 2468d5b4a8d6 bridge
+ 1111  docker network connect bridge 2468d5b4a8d6
+ 1112  docker inspect 2468d5b4a8d6
+ 1113  clear
+ 1114  docker network ls
+ 1115  docker network
+ 1116  docker network disconnect bridge 2468d5b4a8d6
+ 1117  docker network prune
+ 1118  docker network ls
+ 1119  clear
+ 1120* docke
+ 1121  ifconfig
+ 1122  clear
+ 1123  docker network ls
+ 1124  docker run -itd --net=host ubuntu
+ 1125  docker ps
+ 1126  docker inspect 0e6eb6a6945a
+ 1127  clear
+ 1128  docker ps
+ 1129  docker attach 0e6eb6a6945a
+ 1130  ifconfig
+ 1131  clear
+ 1132  docker network ls
+ 1133  docker run --net=none -itd ubuntu
+ 1134  docker ps
+ 1135  docker inspect be4408c00fc8
+ 1136  history
 
 
 
