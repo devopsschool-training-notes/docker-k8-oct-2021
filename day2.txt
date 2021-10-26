@@ -185,9 +185,10 @@ RUN touch /opt/rajesh3.txt
 How to share an docker Image?
 -----------------------------------------
 useradd rajesh
+sudo usermod -aG docker rajesh
 su rajesh
 cd
-sudo usermod -aG docker rajesh
+
 
 Method 1 - using tar ball
  17  pwd
@@ -226,6 +227,47 @@ docker push devopsschools/oct-2021-rajesh2
    36  clear
    37  docker login
    38  docker push devopsschools/oct-2021-rajesh2
+
+===================================================
+
+FROM		DONE
+MAINTAINER	DONE
+RUN		DONE
+
+COPY
+ADD		COPY and EXTRACT
+
+ENV		DONE
+USER		DONE
+EXPOSE
+VOLUME
+WORKDIR
+
+
+--------------------------
+How to set PID 1?
+
+CMD
+ENTRYPOINT
+
+
+What is diff bet CMD vs Entrypoint
+-------------------------------
+CMD can be replaced
+Entrypoint can not be replaced
+
+QS
+---------------------
+2 CMD
+2 ENTRYPOINT
+1 CMD 1 ENTRYPOINT
+https://www.devopsschool.com/blog/example-and-sample-programs-of-dockerfile/
+
+
+
+
+
+
 
 
 
