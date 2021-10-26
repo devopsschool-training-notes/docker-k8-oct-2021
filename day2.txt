@@ -89,3 +89,107 @@
   387  ls
   388  docker start 4a15ec545e0c
   389  ls
+
+=================================
+UBUNTU
+Update
+git
+apache2
+-------------
+		New Images
+=======================================
+How to create an image?
+1. Manual way - 1 Layer at a time
+
+
+395  docker ps
+  396  docker run -itd --name raj ubuntu
+  397  docker ps
+  398  clear
+  399  docker exec -it raj /bin/bash
+  400  clear
+  401  docker ps
+  402  docker exec raj git
+  403  clear
+  404  docker ps
+  405  docker commit -a"Rajesh" -m"ub-up-git-apache" 0d9ec36d3db5 ub-up-git-apache
+  406  docker images
+  407  docker history ubuntu
+  408  docker history ub-up-git-apache
+
+
+==============INSIDE a CONTAINER===============
+root@0d9ec36d3db5:/# history
+    1  apt-get update
+    2  clear
+    3  git
+    4  apt-get install git -y
+    5  git
+    6  which apache2
+    7  apt-get install apache2 -y
+    8  which apache2
+    9  history
+
+
+2. Dockerfile way - N Layers at ONCE
+=================================================
+RULES
+- EACH LINE OF DOCKER FILE WOULD CREATE 1 LAYER
+- NEXT LAYER WOULD BE CREATED FROM A CONTAINER of PREVIOUS LAYER
+                                     ------------------------------
+FROM ubuntu
+MAINTAINER Rajesh Kumar < rajesh@devopsschool.com >
+RUN apt-get update
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get install -y --no-install-recommends tzdata
+RUN apt-get install git -y
+RUN apt-get install apache2 -y
+ENV JAVA_HOME=/opt/java
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar < rajesh@devopsschool.com >
+RUN apt-get update
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get install -y --no-install-recommends tzdata
+RUN apt-get install git -y && apt-get install apache2 -y
+ENV JAVA_HOME=/opt/java
+
+
+FROM ubuntu
+MAINTAINER Rajesh Kumar Singh < rajesh@devopsschool.com >
+RUN touch /opt/rajesh1.txt
+RUN touch /opt/rajesh2.txt
+RUN touch /opt/rajesh3.txt
+
+
+ 413  mkdir rajesh
+  414  cd rajesh/
+  415  ls
+  416  clear
+  417  ls
+  418  vi dockerfile
+  419  docker build -t rajesh1 .
+  420  clear
+  421  vi dockerfile
+  422  docker build -t rajesh1 .
+  423  clear
+  424  docker images
+  425  docker history rajesh1
+  426  clear
+  427  ls
+  428  vi dockerfile2
+  429  docker build -f dockerfile2 -t rajesh2 .
+  430  history
+
+
+
+
+
+
+
+
+
+
+
+
+
