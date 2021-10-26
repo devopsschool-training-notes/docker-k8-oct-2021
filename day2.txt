@@ -1,0 +1,91 @@
+ 299  docker info
+  300  ls
+  301  clear
+  302  ls
+  303  docker info
+  304  ls
+  305  clear
+  306  cd overlay2/
+  307  ls
+  308  du -sh
+  309  docker pull ubuntu
+  310  ls
+  311  docker rmi ubuntu
+  312  clear
+  313  ls
+  314  docker pull httpd
+  315  ls
+  316  docker inspect httpd
+  317  clear
+  318  docker history httpd
+  319  ls
+  320  cd ..
+  321  ls
+  322  cd image/
+  323  ls
+  324  cd overlay2/
+  325  ls
+  326  cd ../..
+  327  clear
+  328  ls
+  329  cd overlay2/
+  330  ls
+  331  docker history httpd
+  332  clear
+  333  ls
+  334  du -h --max-depth=1
+  335  cd ./c0b6380662c8a21cecaf05b822a8fce437beae9acb53530dbe8d59831cc67dd5
+  336  clear
+  337  ls
+  338  cd diff/
+  339  ls
+  340  cd ..
+  341  ls
+  342  cd ..
+  343  clear
+  344  ls
+  345  docker run -d httpd
+  346  ls
+  347  du -sh e96c488f21213569898efd63730a8f20f3ebbaf081b0351c186d2b389d88d53e
+  348  docker run -d httpd
+  349  ls
+  350  docker run -d httpd
+  351  ls
+  352  du -sh 6628a51668755c883e96a38f97465ba7d588de238a26bb8227931fa9a011d9e0-init
+  353  docker ps
+  354  docker stop 70a1d6157ad8 de34500af7bd
+  355  docker ps
+  356  ls
+  357  df -kh
+  358  docker start 70a1d6157ad8 de34500af7bd
+  359  df -kh
+  360  docker stop 70a1d6157ad8 de34500af7bd
+  361  docker rm 70a1d6157ad8 de34500af7bd
+  362  ls
+  363  docker ps
+  364  df -kh
+  365  cd e96c488f21213569898efd63730a8f20f3ebbaf081b0351c186d2b389d88d53e
+  366  ls
+  367  docker exec 4a15ec545e0c touch /tmp/rajesh.txt
+  368  find . -name rajesh.txt
+  369  docker stop 4a15ec545e0c
+  370  ls
+  371  find . -name rajesh.txt
+  372  docker start 4a15ec545e0c
+  373  find . -name rajesh.txt
+  374  ls
+  375  docker exec -it 4a15ec545e0c /bin/bash
+  376  ls
+  377  cd diff/
+  378  ls
+  379  cd etc/
+  380  ls
+  381  more issue
+  382  cd ..
+  383  ls
+  384  cd ..
+  385  ls
+  386  docker stop 4a15ec545e0c
+  387  ls
+  388  docker start 4a15ec545e0c
+  389  ls
