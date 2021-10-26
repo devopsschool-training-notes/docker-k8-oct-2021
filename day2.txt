@@ -263,6 +263,106 @@ QS
 1 CMD 1 ENTRYPOINT
 https://www.devopsschool.com/blog/example-and-sample-programs-of-dockerfile/
 
+======================================================================
+Once container is deleted - the data of the container is deleted.
+
+How to persist data beyong a lifecycle of containers?
+-------------------------------------------
+docker volume
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+
+Types of Vol
+-------------
+volume		/var/lib/docker/volumes	
+mountfs		Anyehere in Host Machine
+tempfs		memory
+
+ 1003  cd /var/lib/docker/
+ 1004  ls
+ 1005  cd volumes
+ 1006  ls
+ 1007  pwd
+ 1008  clear
+ 1009  docker volume
+ 1010  docker volume ls
+ 1011  docker volume prune
+ 1012  docker volume ls
+ 1013  docker ps -a
+ 1014  docker stop $(docker ps -a -q)
+ 1015  docker rm $(docker ps -a -q)
+ 1016  clear
+ 1017  docker ps -a
+ 1018  docker volume prune
+ 1019  ls
+ 1020  docker volume
+ 1021  clear
+ 1022  docker volume create
+ 1023  ls
+ 1024  docker volume create raj
+ 1025  docker volume create ls
+ 1026  docker volume ls
+ 1027  docker volume create dev
+ 1028  docker volume ls
+ 1029  docker run -itd -v raj:/tmp/raj ubuntu
+ 1030  clear
+ 1031  ls
+ 1032  docker ps
+ 1033  docker exec be7e95efd782 ls /tmp
+ 1034  docker exec be7e95efd782 df -kh
+ 1035  docker exec be7e95efd782 touch /tmp/raj/raju1.txt
+ 1036  docker exec be7e95efd782 ls /tmp/raj/
+ 1037  ls
+ 1038  cd raj/
+ 1039  clear
+ 1040  ls
+ 1041  cd _data/
+ 1042  ls
+ 1043  touch raju2.txt
+ 1044  ls
+ 1045  docker exec be7e95efd782 ls /tmp/raj/
+ 1046  docker stop be7e95efd782
+ 1047  docker rm be7e95efd782
+ 1048  ls
+ 1049  docker run -itd -v raj:/tmp/raj ubuntu
+ 1050  docker ps
+ 1051  docker exec 20aafe63e460 ls /tmp/raj/
+ 1052  cd /opt/
+ 1053  ls
+ 1054  clear
+ 1055  mkdir bkp
+ 1056  cd bkp/
+ 1057  pwd
+ 1058  pwd
+ 1059  docker run -itd -v /opt/bkp:/tmp/ramu ubuntu
+ 1060  docker ps
+ 1061  docker exec 13fba1cf7e98 ls /tmp/
+ 1062  docker exec 13fba1cf7e98 df -kh
+ 1063  docker exec 13fba1cf7e98 touch /tmp/ramu/raja.txt
+ 1064  ls
+ 1065  pwd
+ 1066  history
+
+
+ 1066  history
+ 1067  clear
+ 1068  docker volume
+ 1069  docker volume ls
+ 1070  docker volume inspect dev
+ 1071  docker volume rm ls
+ 1072  docker volume ls
+ 1073  history
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
