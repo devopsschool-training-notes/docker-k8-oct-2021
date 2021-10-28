@@ -359,3 +359,36 @@ kubectl create service clusterip my-cs --tcp=5678:80
   550  curl http://10.98.66.89:5678
   551  watch curl http://10.98.66.89:5678
 
+
+[centos@ip-172-31-3-180 rajesh]$ more pod1.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rajesh1
+  labels:
+    app: helloworld
+    system: qa
+spec:
+  containers:
+  - name: devopsschool1
+    image: scmgalaxy/nginx-devopsschoolv1
+    ports:
+    - name: nginx-port
+      containerPort: 80
+[centos@ip-172-31-3-180 rajesh]$ more pod2.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rajesh2
+  labels:
+    app: helloworld
+    system: qa
+spec:
+  containers:
+  - name: devopsschool1
+    image: scmgalaxy/nginx-devopsschoolv2
+    ports:
+    - name: nginx-port
+      containerPort: 80
+
+
