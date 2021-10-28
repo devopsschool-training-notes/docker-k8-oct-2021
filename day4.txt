@@ -163,9 +163,74 @@ spec:
 ReplicationController === DEPRECATED
 Alternative - ReplicaSets
 
+Working with POD
+=================================================
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources	DONE
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  cp            Copy files and directories to and from containers
+  auth          Inspect authorization
 
+
+kubectl port-forward --address 0.0.0.0 pod/rajesh 8888:80 -n=rajesh
+
+  370  kubectl get pods -n=rajesh
+  371  ks
+  372  ls
+  373  kubectl apply -f pod.yaml -n=rajesh
+  374  clear
+  375  kubectl get pods -n=rajesh
+  376  kubectl get pods -n=rajesh -o wide
+  377  kubectl logs rajesh -n=rajesh
+  378  curl http://10.44.0.7
+  379  kubectl logs rajesh -n=rajesh
+  380  curl http://10.44.0.7
+  381  kubectl logs rajesh -n=rajesh
+  382  clear
+  383  kubectl logs rajesh -n=rajesh
+  384  kubectl logs -h
+  385  clear
+  386  kubectl exec h
+  387  kubectl exec -h
+  388  clear
+  389  ls
+  390  kubectl get pods -n=raejsh
+  391  kubectl get pods -n=rajesh
+  392  kubectl exec rajesh -n=rajesh ls
+  393  kubectl exec -it rajesh -n=rajesh /bin/bash
+  394  kubectl attach rajesh -n=rajesh
+  395  kubectl get pods -n=rajesh -o wide
+  396  nohup watch curl http://10.44.0.7 &
+  397  bg
+  398  kubectl attach rajesh -n=rajesh
+  399  clear
+  400  kubectl get pods -n=rajesh
+  401  kubectl get pods -n=rajesh -o wide
+  402  kubectl port-forward -h
+  403  clear
+  404  kubectl port-forward --address 0.0.0.0 pod/rajesh 8888:80 -n=rajesh
+  405  ls
+  406  kubectl cp ns.yaml rajesh:/tmp -n=rajesh
+  407  kubectl exec rajesh -n=rajesh ls /tmp
+  408  kubectl auth
+  409  kubectl auth can-i create pod
+  410  clear
+  411  kubectl auth can-i create rc
 
 Deployment
+======================================
+
+
+
+
+
+
+
+
+
 
 Service
 
