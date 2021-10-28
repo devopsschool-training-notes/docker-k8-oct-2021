@@ -392,3 +392,24 @@ spec:
       containerPort: 80
 
 
+  565  kubectl create service nodeport my-cs --tcp=5678:80
+  566  kubectl create service nodeport my-ns --tcp=5678:80
+  567  kubectl get ns
+  568  kubectl get svc
+  569  clear
+  570  kubectl get svc
+  571  kubectl describe svc my-ns
+  572  kubectl edit svc my-ns
+  573  kubectl describe svc my-ns
+  574  kubectl get pods --show-labels
+  575  kubectl edit svc my-ns
+  576  kubectl describe svc my-ns
+  577  kubectl get svc
+  578  curl http://10.111.142.175:5678
+
+583  history
+  584  clear
+  585  kubectl create service loadbalancer my-ns --tcp=5678:80
+  586  kubectl create service loadbalancer my-lb --tcp=5678:80
+  587  kubectl get svc
+
