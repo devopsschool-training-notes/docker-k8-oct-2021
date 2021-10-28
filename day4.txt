@@ -1,3 +1,331 @@
+Workstation - 3.109.206.248
+
+Master - 3.109.206.248
+
+
+Worker - 13.232.240.100
+
+CRUD
+---------------------
+CREATE
+	CMD
+		create
+	YAML
+		create -f filename
+
+READ
+	CMD
+		get
+		describe
+	YAML
+		get -f filename
+
+UPDATE
+	CMD
+		edit
+	YAML 
+		apply -f filename
+DELETE
+	CMD
+		delete
+	YAML
+		delete -f filename
+
+POD
+https://www.devopsschool.com/blog/kubernetes-pod-example-programs/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rajesh
+  labels:
+    app: helloworld
+
+spec:
+  containers:
+  - name: devopsschool1
+    image: scmgalaxy/nginx-devopsschoolv1
+    ports:
+    - name: nginx-port
+      containerPort: 80
+  - name: devopsschool1
+    image: scmgalaxy/nginx-devopsschoolv2
+    ports:
+    - name: nginx-port
+      containerPort: 81
+
+
+ 288  vi pod.yaml
+  289  kubectl get ns
+  290  kubectl get pods
+  291  kubectl get pods -n=test
+  292  kubectl create -f pod.yaml
+  293  kubectl get pods
+  294  clear
+  295  kubectl create -f pod.yaml
+  296  kubectl get pods
+  297  kubectl create ns rajesh
+  298  kubectl create -f pod.yaml -n=rajesh
+  299  kubectl ge pods -n=rajesh
+  300  kubectl get pods -n=rajesh
+  301  kubectl get pods
+  302  clear
+  303  kubectl get pods -n=rajesh
+  304  kubectl describe pods rajesh -n=rajesh
+  305  clear
+  306  kubectl get pods -n=rajesh --show-lables
+  307  kubectl get pods -n=rajesh --show-labels
+  308  kubectl get pods -n=rajesh -o wide
+  309  kubectl get pods -h
+  310  clear
+  311  kubectl get pods -n=rajesh
+  312  kubectl edit pods rajesh  -n=rajesh
+  313  kubectl get pods -n=rajesh --show-labels
+  314  vi pod.yaml
+  315  kubectl apply -f pod.yaml -n=rajesh
+  316  kubectl get pods -n=rajesh --show-labels
+  317  kubectl get pods
+  318  kubectl delete pods rajesh
+  319  kubectl delete -f pod.yaml -n=rajesh
+  320  clear
+  321  kubectl pods -a
+  322  kubectl pods -All
+  323  kubectl get pods -A
+  324  clar
+  325  history
+
+
+
+
+ReplicationController
+=========================================================================
+Replication --> 1 POD to Manys
+
+Controller ---> X number Desire === x Number Actual
+https://www.devopsschool.com/blog/kubernetes-replicationcontroller-example-programs/
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  # Unique key of the ReplicationController instance
+  name: rc-rajesh
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+      # Run the nginx image
+      - name: nginx
+        image: scmgalaxy/nginx-devopsschoolv1
+      - name: nginx
+        image: scmgalaxy/nginx-devopsschoolv2
+
+
+
+ 327  kubectl create -h
+  328  clear
+  329  ls
+  330  cd ..
+  331  ls
+  332  cd rajesh/
+  333  ls
+  334  vi rc.yaml
+  335  kubectl get rc
+  336  kubectl get rc -n=rajesh
+  337  kubectl get pod -n=rajesh
+  338  kubectl create -f rc.yaml
+  339  kubectl delete -f rc.yaml
+  340  kubectl create -f rc.yaml -n=rajesh
+  341  kubectl get pod -n=rajesh
+  342  kubectl describe rc rc-rajesh -n=rajesh
+  343  clear
+  344  kubectl edit rc rc-rajesh -n=rajesh
+  345  kubectl get pod -n=rajesh
+  346  kubectl edit rc rc-rajesh -n=rajesh
+  347  kubectl get pod -n=rajesh
+  348  vi rc.yaml
+  349  kubectl apply -f rc.yaml -n=rajesh
+  350  kubectl get pod -n=rajesh
+  351  kubectl edit pod rc-rajesh-srlt8 -n=rajesh
+  352  kubectl get pod -n=rajesh
+  353  kubectl edit pod rc-rajesh-srlt8 -n=rajesh
+  354  kubectl get pod -n=rajesh
+  355  clear
+  356  kubectl get pod -n=rajesh
+  357  kubectl delete pods rc-rajesh-k4xqj rc-rajesh-srhrm rc-rajesh-wfxnl -n=rajesh
+  358  kubectl get pod -n=rajesh
+
+
+
+
+ReplicationController === DEPRECATED
+Alternative - ReplicaSets
+
+Working with POD
+=================================================
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources	DONE
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  cp            Copy files and directories to and from containers
+  auth          Inspect authorization
+
+
+kubectl port-forward --address 0.0.0.0 pod/rajesh 8888:80 -n=rajesh
+
+  370  kubectl get pods -n=rajesh
+  371  ks
+  372  ls
+  373  kubectl apply -f pod.yaml -n=rajesh
+  374  clear
+  375  kubectl get pods -n=rajesh
+  376  kubectl get pods -n=rajesh -o wide
+  377  kubectl logs rajesh -n=rajesh
+  378  curl http://10.44.0.7
+  379  kubectl logs rajesh -n=rajesh
+  380  curl http://10.44.0.7
+  381  kubectl logs rajesh -n=rajesh
+  382  clear
+  383  kubectl logs rajesh -n=rajesh
+  384  kubectl logs -h
+  385  clear
+  386  kubectl exec h
+  387  kubectl exec -h
+  388  clear
+  389  ls
+  390  kubectl get pods -n=raejsh
+  391  kubectl get pods -n=rajesh
+  392  kubectl exec rajesh -n=rajesh ls
+  393  kubectl exec -it rajesh -n=rajesh /bin/bash
+  394  kubectl attach rajesh -n=rajesh
+  395  kubectl get pods -n=rajesh -o wide
+  396  nohup watch curl http://10.44.0.7 &
+  397  bg
+  398  kubectl attach rajesh -n=rajesh
+  399  clear
+  400  kubectl get pods -n=rajesh
+  401  kubectl get pods -n=rajesh -o wide
+  402  kubectl port-forward -h
+  403  clear
+  404  kubectl port-forward --address 0.0.0.0 pod/rajesh 8888:80 -n=rajesh
+  405  ls
+  406  kubectl cp ns.yaml rajesh:/tmp -n=rajesh
+  407  kubectl exec rajesh -n=rajesh ls /tmp
+  408  kubectl auth
+  409  kubectl auth can-i create pod
+  410  clear
+  411  kubectl auth can-i create rc
+
+Deployment
+======================================
+Replication + Controller
+-----------------------------
+	ReplicaSets
+
+Versioning
+Rollout + Rollback
+---------------------------------
+https://www.devopsschool.com/blog/kubernetes-deployment-strategy-explained-with-example/
+
+	withut downtime
+
+kubectl create deployment my-dep --replicas=10 --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+
+
+kubectl scale --replicas=5 deployment/my-dep -n=rajesh
+
+  414  kubectl create -h
+  415  clear
+  416  kubectl create deployment -h
+  417  clear
+  418  ls
+  419  kubectl get deploy -h
+  420  clear
+  421  kubectl get deploy
+  422  kubectl get deploy -n=rajesh
+  423  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+  424  kubectl get deploy -n=rajesh
+  425  kubectl get pods -n=rajesh
+  426  kubectl describe deploy my-dep -n=rajesh
+  427  kubectl get rs -n=rajesh
+  428  clear
+  429  kubectl get deploy -n=rajesh
+  430  kubectl edit deploy my-dep -n=rajesh
+  431  kubectl get deploy -n=rajesh
+  432  kubectl get rs -n=rajesh
+  433  kubectl
+  434  clear
+  435  kubectl scale -h
+  436  clear
+  437  kubectl scale --replicas=5 deployment/my-dep -n=rajesh
+  438  kubectl get deploy -n=rajesh
+  439  kubectl scale --replicas=2 deployment/my-dep -n=rajesh
+  440  kubectl get deploy -n=rajesh
+  441  kubectl scale --replicas=7 deployment/my-dep -n=rajesh
+  442  kubectl get deploy -n=rajesh
+  443  kubectl get pods -n=rajesh
+  444  kubectl delete pod my-dep-747b4ffb56-4csl9 my-dep-747b4ffb56-4zzs6 my-dep-747b4ffb56-6hzsh -n=rajesh
+  445  kubectl get pods -n=rajesh
+  446  clerar
+  447  clear
+  448  kubectl get deploy -n=rajesh
+  449  kubectl delete deploy my-dep -n=rajesh
+  450  kubectl get deploy -n=rajesh
+  451  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+  452  kubectl get deploy -n=rajesh
+  453  kubectl
+  454  kubectl rollout -h
+  455  kubectl rollout history deploy/my-dep -n=rajesh
+  456  kubectl get pods -o wide
+  457  kubectl get pods -o wide  -n=rajesh
+  458  curl http://10.44.0.9
+  459  clear
+  460  kubectl edit deploy my-dep -n=rajesh
+  461* kubectl get pods -o wide  -n=rajes
+  462  curl http://10.44.0.10
+  463  kubectl rollout history deploy/my-dep -n=rajesh
+  464  kubectl delete deploy my-dep -n=rajesh
+  465  clear
+  466  kubectl create deployment
+  467  kubectl create deployment -h
+  468  clear
+  469  kubectl create deployment my-dep --replicas=5 --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+  470  kubectl get deploy -n=rajesh
+  471  kubectl describe deploy my-dep -n=rajesh
+  472  clear
+  473  kubectl delete deploy my-dep -n=rajesh
+  474  kubectl create deployment my-dep --replicas=10 --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+  475  kubectl get deploy -n=rajesh
+  476  kubectl rollout status deploy/my-dep -n=rajesh
+  477  kubectl edit deploy my-dep -n=rajesh
+  478  kubectl rollout status deploy/my-dep -n=rajesh
+  479  kubectl get pods -n=rajesh
+  480  kubectl get pods -n=rajesh -o wide
+  481  curl http://10.44.0.26
+  482  kubectl rollout history deploy/my-dep -n=rajesh
+  483  kubectl rollout undo -h
+  484  kubectl rollout undo deploy/my-dep --to-revision=1 -n=rajesh
+  485  kubectl rollout status deploy/my-dep -n=rajesh
+  486  kubectl get pods -n=rajesh -o wide
+  487  curl http://10.44.0.10
+  488  history
+
+
+
+Service
+
+kubectl create service clusterip my-cs --tcp=5678:80
+
+
+
+
   520  kubectl apply -f pod1.yaml
   521  kubectl apply -f pod2.yaml
   522  kubectl get pods
@@ -30,3 +358,4 @@
   549  kubectl describe svc my-cs;kubectl get svc --show-labels;kubectl get pods -o wide --show-labels
   550  curl http://10.98.66.89:5678
   551  watch curl http://10.98.66.89:5678
+
