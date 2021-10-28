@@ -40,6 +40,7 @@ metadata:
   name: rajesh
   labels:
     app: helloworld
+
 spec:
   containers:
   - name: devopsschool1
@@ -47,6 +48,11 @@ spec:
     ports:
     - name: nginx-port
       containerPort: 80
+  - name: devopsschool1
+    image: scmgalaxy/nginx-devopsschoolv2
+    ports:
+    - name: nginx-port
+      containerPort: 81
 
 
  288  vi pod.yaml
@@ -92,6 +98,72 @@ spec:
 
 
 ReplicationController
+=========================================================================
+Replication --> 1 POD to Manys
+
+Controller ---> X number Desire === x Number Actual
+https://www.devopsschool.com/blog/kubernetes-replicationcontroller-example-programs/
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  # Unique key of the ReplicationController instance
+  name: rc-rajesh
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      # Run the nginx image
+      - name: nginx
+        image: scmgalaxy/nginx-devopsschoolv1
+
+
+
+ 327  kubectl create -h
+  328  clear
+  329  ls
+  330  cd ..
+  331  ls
+  332  cd rajesh/
+  333  ls
+  334  vi rc.yaml
+  335  kubectl get rc
+  336  kubectl get rc -n=rajesh
+  337  kubectl get pod -n=rajesh
+  338  kubectl create -f rc.yaml
+  339  kubectl delete -f rc.yaml
+  340  kubectl create -f rc.yaml -n=rajesh
+  341  kubectl get pod -n=rajesh
+  342  kubectl describe rc rc-rajesh -n=rajesh
+  343  clear
+  344  kubectl edit rc rc-rajesh -n=rajesh
+  345  kubectl get pod -n=rajesh
+  346  kubectl edit rc rc-rajesh -n=rajesh
+  347  kubectl get pod -n=rajesh
+  348  vi rc.yaml
+  349  kubectl apply -f rc.yaml -n=rajesh
+  350  kubectl get pod -n=rajesh
+  351  kubectl edit pod rc-rajesh-srlt8 -n=rajesh
+  352  kubectl get pod -n=rajesh
+  353  kubectl edit pod rc-rajesh-srlt8 -n=rajesh
+  354  kubectl get pod -n=rajesh
+  355  clear
+  356  kubectl get pod -n=rajesh
+  357  kubectl delete pods rc-rajesh-k4xqj rc-rajesh-srhrm rc-rajesh-wfxnl -n=rajesh
+  358  kubectl get pod -n=rajesh
+
+
+
+
+ReplicationController === DEPRECATED
+Alternative - ReplicaSets
+
+
 
 Deployment
 
