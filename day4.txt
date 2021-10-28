@@ -1,0 +1,100 @@
+Workstation - 3.109.206.248
+
+Master - 3.109.206.248
+
+
+Worker - 13.232.240.100
+
+CRUD
+---------------------
+CREATE
+	CMD
+		create
+	YAML
+		create -f filename
+
+READ
+	CMD
+		get
+		describe
+	YAML
+		get -f filename
+
+UPDATE
+	CMD
+		edit
+	YAML 
+		apply -f filename
+DELETE
+	CMD
+		delete
+	YAML
+		delete -f filename
+
+POD
+https://www.devopsschool.com/blog/kubernetes-pod-example-programs/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rajesh
+  labels:
+    app: helloworld
+spec:
+  containers:
+  - name: devopsschool1
+    image: scmgalaxy/nginx-devopsschoolv1
+    ports:
+    - name: nginx-port
+      containerPort: 80
+
+
+ 288  vi pod.yaml
+  289  kubectl get ns
+  290  kubectl get pods
+  291  kubectl get pods -n=test
+  292  kubectl create -f pod.yaml
+  293  kubectl get pods
+  294  clear
+  295  kubectl create -f pod.yaml
+  296  kubectl get pods
+  297  kubectl create ns rajesh
+  298  kubectl create -f pod.yaml -n=rajesh
+  299  kubectl ge pods -n=rajesh
+  300  kubectl get pods -n=rajesh
+  301  kubectl get pods
+  302  clear
+  303  kubectl get pods -n=rajesh
+  304  kubectl describe pods rajesh -n=rajesh
+  305  clear
+  306  kubectl get pods -n=rajesh --show-lables
+  307  kubectl get pods -n=rajesh --show-labels
+  308  kubectl get pods -n=rajesh -o wide
+  309  kubectl get pods -h
+  310  clear
+  311  kubectl get pods -n=rajesh
+  312  kubectl edit pods rajesh  -n=rajesh
+  313  kubectl get pods -n=rajesh --show-labels
+  314  vi pod.yaml
+  315  kubectl apply -f pod.yaml -n=rajesh
+  316  kubectl get pods -n=rajesh --show-labels
+  317  kubectl get pods
+  318  kubectl delete pods rajesh
+  319  kubectl delete -f pod.yaml -n=rajesh
+  320  clear
+  321  kubectl pods -a
+  322  kubectl pods -All
+  323  kubectl get pods -A
+  324  clar
+  325  history
+
+
+
+
+ReplicationController
+
+Deployment
+
+Service
+
+
