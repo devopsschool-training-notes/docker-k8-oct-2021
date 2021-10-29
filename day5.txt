@@ -59,3 +59,77 @@ https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes
   999  kubectl exec task-pv-pod ls /usr/share/nginx/html
  1000  exit
  1001  kubectl get pv;kubectl get pvc
+
+
+sudo openssl x509 -req -in employee.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out employee.crt -days 500
+
+
+
+kubectl config set-credentials employee --client-certificate=/home/centos/cer/employee.crt  --client-key=/home/centos/cer/employee.key
+
+
+kubectl
+	config
+
+Clustor(S):
+	Clustor1
+	Clustor2
+	Clustor3
+	Clustor4
+USer(S)
+	user1
+	user2
+	user3
+	user4
+Context(S)
+	Context1= Clustor2+ user3
+	Context2= Clustor1+ user1
+curr-conext -
+kubectl get pods
+
+
+kubectl get pods --context=context1
+
+
+ 1039  kubectl config set-context employee-context --cluster=kubernetes --namespace=office --user=employee
+ 1040  kubectl config view
+ 1041  kubectl get pods
+ 1042  kubectl get pods --context=employee-context
+ 1043  kubectl create namespace office
+ 1044  clear
+ 1045  kubectl --context=employee-context get pods
+ 1046  sudo -s
+ 1047  kubectl api-resources
+ 1048  clear
+ 1049  ls
+ 1050  v role.yaml
+ 1051  vi role.yaml
+ 1052  kubectl get roles
+ 1053  kubectl get roles -n=office
+ 1054  kubectl create -f role.yaml
+ 1055  vi role.yaml
+ 1056  kubectl api-resources
+ 1057  clear
+ 1058  kubectl create -f role.yaml
+ 1059  kubectl get roles -n=office
+ 1060  kubectl api-resources
+ 1061  clear
+ 1062  ls
+ 1063  kubectl explain rolebinding
+ 1064  kubectl explain rolebinding.roleRef
+ 1065  kubectl api-resources
+ 1066  clear
+ 1067  ls
+ 1068  vi rb.yaml
+ 1069  kubectl get rolesbinding
+ 1070  kubectl get rolebinding
+ 1071  kubectl get rolebinding -n=office
+ 1072  kubectl create -f rb.yaml
+ 1073  kubectl get rolebinding -n=office
+ 1074  clear
+ 1075  kubectl --context=employee-context get pods
+ 1076  kubectl --context=employee-context get svc
+ 1077  history
+
+https://www.devopsschool.com/blog/understanding-authentication-authorization-in-kubernetes/
+
