@@ -1,0 +1,61 @@
+Workstation - 3.109.210.50
+
+Master -3.109.210.50
+
+Worker - 52.66.155.127
+
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+
+ 949  kubectl get nodes
+  950  kubectl get pv
+  951  kubectl get pvc
+  952  kubectl get pvc -n=rajesh
+  953  clear
+  954  kubectl get pvc
+  955  kubectl get pv
+  956  ls
+  957  cd rajesh/
+  958  ls
+  959  clear
+  960  ls
+  961  vi pv1.yaml
+  962  kubectl apply -f pv1.yaml
+  963  kubectl get pv
+  964  vi pv1.yaml
+  965  kubectl apply -f pv1.yaml
+  966  kubectl get pv
+  967  vi pv1.yaml
+  968  kubectl apply -f pv1.yaml
+  969  kubectl get pv
+  970  clear
+  971  ls
+  972  vi pvc1.yaml
+  973  kubectl apply -f pvc1..yaml
+  974  kubectl apply -f pvc1.yaml
+  975  kubectl get pvc
+  976  kubectl get pv
+  977  kubectl describe pvc pvchostpath
+  978  more pvc1.yaml
+  979  clear
+  980  vi pvc1.yaml
+  981  kubectl apply -f pvc1.yaml
+  982  kubectl get pv;kubectl get pvs
+  983  kubectl get pv;kubectl get pvc
+  984  clear
+  985  kubectl get pv;kubectl get pvc
+  986  vi pv1.yaml
+  987  kubectl apply -f pv1.yaml
+  988  kubectl get pv;kubectl get pvc
+  989  vi podv.yaml
+  990  kubectl apply -f podv.yaml
+  991  kubectl get pv;kubectl get pvc
+  992  kubectl get pods
+  993  kubectl exec task-pv-pod df -kh
+  994  kubectl exec task-pv-pod df -k
+  995  kubectl exec task-pv-pod df
+  996  kubectl exec task-pv-pod ls task-pv-pod
+  997  kubectl exec task-pv-pod ls /usr/share/nginx/html
+  998  kubectl exec task-pv-pod touch /usr/share/nginx/html/index.html
+  999  kubectl exec task-pv-pod ls /usr/share/nginx/html
+ 1000  exit
+ 1001  kubectl get pv;kubectl get pvc
